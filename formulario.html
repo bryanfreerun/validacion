@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #error {
+            color: red;
+        }
+    </style>
+    </head>
+    <body>
+    
+    <form id="formulario">
+        <div>
+            <label for="nombre">Nombre:</label>
+            <input type="text" name="nombre" id="nombre" placeholder="Ingrese su nombre">
+        </div>
+    
+        <div>
+            <label for="apellido">Apellidos:</label>
+            <input type="text" name="apellido" id="apellido" placeholder="Ingrese sus apellidos">
+        </div>
+        
+        <div>
+            <label for="edad">Edad:</label>
+            <input type="text" name="edad" id="edad" placeholder="Ingrese su edad">
+        </div>
+        
+        <div>
+            <label for="sexo">Sexo:</label>
+            <select name="sexo" id="sexo">
+                <option value="mujer">Mujer</option>
+                <option value="hombre">Hombre</option>
+            </select>
+        </div>
+    
+        <div>
+            <label for="email">Email:</label>
+            <input type="text" name="email" id="email" placeholder="Ingrese su email">
+        </div>
+        
+        <div>
+            <label for="tel">Telefono:</label>
+            <input type="text" name="tel" id="tel" placeholder="Ingrese su numero de Telefono">
+        </div>
+    
+        <div>
+            <input type="submit" value="Enviar">
+        </div>
+    </form>
+    
+    <div id="error"></div>
+    
+    <script>
+    document.getElementById("formulario").addEventListener("submit", function(event) {
+        event.preventDefault();
+    
+        let nombre = document.getElementById("nombre").value.trim();
+        let apellido = document.getElementById("apellido").value.trim();
+        let edad = document.getElementById("edad").value.trim();
+        let sexo = document.getElementById("sexo").value;
+        let email = document.getElementById("email").value.trim();
+        let tel = document.getElementById("tel").value.trim();
+    
+        let errorDiv = document.getElementById("error");
+        errorDiv.innerHTML = "";
+    
+        if (!nombre.match(/^[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ]+$/)) {
+            errorDiv.innerHTML += "El nombre debe contener solo letras.<br>";
+        } else {
+            nombre = nombre.toLowerCase();
+            nombre = nombre.charAt(0).toUpperCase() + nombre.slice(1);
+        }
+    
+        if (!apellido.match(/^[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ]+$/)) {
+            errorDiv.innerHTML += "Los apellidos deben contener solo letras.<br>";
+        } else {
+            apellido = apellido.toLowerCase();
+            apellido = apellido.charAt(0).toUpperCase() + apellido.slice(1);
+        }
+    
+        if (isNaN(edad) || parseInt(edad) <= 18) {
+            errorDiv.innerHTML += "La edad debe ser mayor de 18 años.<br>";
+        }
+    
+        if (!email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+            errorDiv.innerHTML += "El email no es válido.<br>";
+        }
+    
+        if (!tel.match(/^[0-9\s]+$/)) {
+            errorDiv.innerHTML += "El teléfono solo puede contener números y espacios.<br>";
+        }
+    
+        if (errorDiv.innerHTML === "") {
+            alert("Datos enviados correctamente:");
+            alert("Nombre: " + nombre);
+            alert("Apellidos: " + apellido);
+            alert("Edad: " + edad);
+            alert("Sexo: " + sexo);
+            alert("Email: " + email);
+            alert("Teléfono: " + tel);
+        }
+    });
+    </script>
+    
+    </body>
+    </html>
