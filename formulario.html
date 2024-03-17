@@ -8,10 +8,18 @@
         #error {
             color: red;
         }
+        form{
+            width: 500px;
+            height: 100px;
+        }
+        div{
+            display: flex;
+            margin-top: 10px;
+        }
     </style>
     </head>
     <body>
-    
+    <caption><h1>Formulario</h1></caption>
     <form id="formulario">
         <div>
             <label for="nombre">Nombre:</label>
@@ -30,10 +38,9 @@
         
         <div>
             <label for="sexo">Sexo:</label>
-            <select name="sexo" id="sexo">
-                <option value="mujer">Mujer</option>
-                <option value="hombre">Hombre</option>
-            </select>
+            <input type="radio" id="sexo" value="sexo" id="mujer">Mujer
+            <input type="radio" id="sexo" value="sexo" id="hombre">Hombre
+
         </div>
     
         <div>
